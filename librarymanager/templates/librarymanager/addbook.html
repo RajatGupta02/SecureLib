@@ -1,0 +1,30 @@
+{% extends 'librarymanager/basic.html' %}
+{% block title %} Add Books {% endblock %}
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+{% load crispy_forms_tags %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    <!-- {{bookform.book_name|as_crispy_field}} -->
+    <div class="mx-auto" style="width:500px">
+        {{bookform.book_name|as_crispy_field}}
+        {{bookform.isbn|as_crispy_field}}
+        {{bookform.author|as_crispy_field}}
+        {{bookform.desc|as_crispy_field}}
+        {{bookform.quantity|as_crispy_field}}
+        {{bookform.image|as_crispy_field}}
+        <button type="submit" class="btn btn-success my-4 mx-auto">Add Book</button>
+    </div>
+    
+    
+
+</form>
+
+
+{% endblock %}

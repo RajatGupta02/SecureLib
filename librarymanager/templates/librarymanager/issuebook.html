@@ -1,0 +1,41 @@
+{% extends 'librarymanager/basic.html' %}
+{% block title %} Add Books {% endblock %}
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="col my-4">
+        <h2>Please Enter Details:</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputstudent_name">Name</label>
+                    <input type="text" class="form-control" id="student_name" name="student_name"  required="required" placeholder="Name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="email" name="email"  required="required" placeholder="abc@xyz.com">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputduration">Duration</label>
+                <input type="number" class="form-control" id="duration" name="duration"  required="required" placeholder="7 Days">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputphone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone"  required="required" placeholder="+91898938928">
+                </div>
+            </div>  
+            <input type="submit" class="btn btn-primary my-4" value="Request Book">
+            <!-- <button type="submit" formmethod="post" >Submit</button> -->
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

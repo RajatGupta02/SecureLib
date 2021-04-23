@@ -1,0 +1,221 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+    <title>Album example · Bootstrap v5.0</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+    
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+<!-- <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <style>
+       .searchbar{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:rgb(47, 183, 207);
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #3ccde7;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+
+
+
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+       .card-img-top {
+        object-fit: none;
+        }
+      
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    {% load static %}
+    {% load lib_tags %}
+    <header>
+        <div class="bg-dark collapse" id="navbarHeader">
+          <div class="container">
+             <div class="row">
+              <div class="col-sm-8 col-md-7 py-4">
+                <h4 class="text-white">About</h4>
+                <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              </div>
+              <div class="col-sm-4 offset-md-1 py-4">
+                <h4 class="text-white">Quick Links</h4>
+                <ul class="list-unstyled">
+                  <li><a href="https://github.com/RajatGupta02/" class="text-white">Developer's Github</a></li>
+                  {% if request.user|has_group:"Librarian" %} 
+                  <li><a href="/viewrequests" class="text-white">View Student Requests</a></li>
+                  {% endif %}
+                  <li><a href="/logout" class="text-white">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+          <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                width="100" height="48"
+                viewBox="0 0 172 172"
+                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="#212529"></path><g fill="#ffffff"><path d="M86,26.875c-20.9625,0 -37.625,16.6625 -37.625,37.625c0,13.10156 6.50354,24.51819 16.50293,31.24219c-19.13661,8.24971 -32.62793,27.31079 -32.62793,49.38281h10.75c0,-23.65 19.35,-43 43,-43c1.83372,0 3.61536,-0.17319 5.375,-0.41992v24.60742c0,27.95 36.5479,44.0792 38.1604,44.6167l2.1521,1.0708l2.1521,-1.0708c1.6125,-0.5375 38.1604,-16.6667 38.1604,-44.6167v-29.5625h-4.8396c-10.2125,0 -16.1271,-3.7583 -20.9646,-6.4458c-4.8375,-2.15 -9.1333,-4.3042 -14.5083,-4.3042c-5.375,0 -9.675,2.1542 -13.4375,4.3042c-2.72109,1.51172 -5.98546,3.34061 -10.10962,4.67163c9.40098,-6.80342 15.48462,-17.83995 15.48462,-30.47583c0,-20.9625 -16.6625,-37.625 -37.625,-37.625zM86,37.625c15.05,0 26.875,11.825 26.875,26.875c0,15.05 -11.825,26.875 -26.875,26.875c-15.05,0 -26.875,-11.825 -26.875,-26.875c0,-15.05 11.825,-26.875 26.875,-26.875zM131.6875,96.75c2.6875,0 4.8333,1.0729 9.1333,3.2229l1.6167,0.5354c4.3,2.15 10.2125,5.3813 18.8125,6.4563v18.8125c0,17.7375 -23.1125,30.6312 -29.5625,33.8562c-6.45,-3.225 -29.5625,-16.1187 -29.5625,-33.8562v-18.8125c9.1375,-1.075 15.0479,-4.3063 19.3479,-6.4563l1.6167,-0.5354h0.5354h0.5354c3.225,-2.6875 4.8396,-3.2229 7.5271,-3.2229z"></path></g></g></svg>
+              <strong>Welcome {{request.user}}</strong>
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">SECURE-LIB</h1>
+        <p class="lead text-muted">IITD's very own Library management system.<br>Checkout the following best-sellers. </p>
+        <form>
+          <div class="input-group">
+              <input name="search" type="text" placeholder="Search" class="form-control form-control-lg" />
+              <div class="input-group-append">
+                  <button class="btn btn-dark btn-lg">Search</button>
+              </div>
+          </div>
+      </form>
+        <p>
+          {% if request.user|has_group:"Librarian" %}
+          <a href="/managebooks" class="btn btn-primary my-2">Manage Books</a>
+          
+          {% else %}
+    
+          <a href="/profileview/{{request.user.id}}" id="pv{{i.id}}" class="btn btn-primary my-2">View Profile</a>
+          <!-- <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
+          {% endif %}
+        </p>
+      
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for i in books %}
+        <div class="col">
+          <div class="card shadow-sm">
+                <IMG src='/media/{{i.image}}'>
+                <title>Placeholder</title>
+            <div class="card-body">
+              <p class="card-text">{{i.book_name}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  {% if request.user|has_group:"Librarian" %} 
+                  <a href="/bookview/{{i.id}}" id="qv{{i.id}}"class="btn btn-sm btn-outline-secondary">View</a>
+                  {% else %}
+
+                    {% if boollist|index:forloop.counter0 %}
+                      <a href="/bookview/{{i.id}}" id="qv{{i.id}}"class="btn btn-sm btn-outline-secondary">View</a>
+
+                    {% else %}
+                      <a href="/bookview/{{i.id}}" id="qv{{i.id}}"class="btn btn-sm btn-outline-secondary">View</a>
+                      <a href="/issuebook/{{i.book_name}}/{{request.user.id}}" id="ib{{request.user.id}}" class="btn btn-sm btn-outline-secondary">Request Book</a>
+                    {% endif %}
+                  {% endif %}
+                  <!-- <button id="{{i.id}}" type="button" class="btn btn-sm btn-outline-secondary">Request Book</button> -->
+                </div>
+                <small class="text-muted">{{i.quantity}} left</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.0/getting-started/introduction/">getting started guide</a>.</p>
+  </div>
+</footer>
+
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    
+      
+  </body>
+</html>

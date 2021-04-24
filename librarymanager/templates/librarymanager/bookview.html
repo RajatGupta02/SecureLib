@@ -84,7 +84,8 @@
               <ul class="list-unstyled">
                  <li><a href="https://github.com/RajatGupta02/" class="text-white">Developer's Github</a></li>
                   {% if request.user|has_group:"Librarian" %} 
-                  <li><a href="/viewrequests" class="text-white">View Student Requests</a></li>
+                  <li><a href="/viewrequests" class="text-white">View Pending Requests</a></li>
+                  <li><a href="/viewapprovedrequests" class="text-white">View Approved Requests</a></li>
                   {% endif %}
                 <!-- <li><a href="#" class="text-white"></a></li> -->
                 <li><a href="/logout" class="text-white">Logout</a></li>

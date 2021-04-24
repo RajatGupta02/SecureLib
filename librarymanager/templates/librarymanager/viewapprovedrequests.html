@@ -30,7 +30,7 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
           <th scope="col">Student Name</th>
           <th scope="col">Student ID</th>
           <th scope="col">Email ID</th>
-          <th scope="col">Request Date</th>
+          <th scope="col">Issue Date</th>
           <th scope="col">Duration</th>
           <th scope="col" align="center">Action</th>
          
@@ -46,22 +46,14 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
               <td>{{t.4}}</td>
               <td align="center">{{t.5}}</td>
               <td>{{t.6}} Days</td>
-              <td style='white-space: nowrap'>
-                <form action= "{% url 'approverequest' t.0 %} " method = "POST" class="d-inline">
-                    {% csrf_token %}
-                   
-                    <input type="submit" class="btn btn-outline-success" value="Approve">
-                    
-                    
-                </form>
-               
-                <form action= "{% url 'deleterequest' t.0 %} " method = "POST" class="d-inline">
-                    {% csrf_token %}
-                   
-                    <input type="submit" class="btn btn-outline-danger" value="Decline">
-                    
-                    
-                </form>
+              <td>
+                <form action= "{% url 'returned' t.0 %} " method = "POST" class="d-inline">
+                  {% csrf_token %}
+                 
+                  <input type="submit" class="btn btn-outline-warning" value="Returned">
+                  
+                  
+              </form>
               </td>
                 
           

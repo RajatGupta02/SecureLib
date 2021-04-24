@@ -17,5 +17,8 @@ urlpatterns = [
     path('deletebook/<str:pk>', views.deletebook, name='deletebook'),
     path('issuebook/<str:bookname>/<str:stid>', views.issuebook, name='issuebook'),
     path('viewrequests/', views.viewrequests, name='viewrequests'),
-    path('deleterequest/<int:request_id>', views.deleterequest, name='deleterequest')
+    path('deleterequest/<int:request_id>', views.deleterequest, name='deleterequest'),
+    path('approverequest/<int:request_id>', views.approverequest, name='approverequest'),
+    path('viewapprovedrequests/', views.viewapproved, name='viewapproved'),
+    path('returned/<int:request_id>', views.returned, name='returned'),
 ]

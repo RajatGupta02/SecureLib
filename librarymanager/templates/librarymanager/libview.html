@@ -154,6 +154,7 @@
       </form>
         <p>
           {% if request.user|has_group:"Librarian" %}
+          <a href="/viewrequests" class="btn btn-secondary my-2">View Pending Requests</a>
           <a href="/managebooks" class="btn btn-primary my-2">Manage Books</a>
           <a href="/viewapprovedrequests" class="btn btn-secondary my-2">View Approved Requests</a>
           

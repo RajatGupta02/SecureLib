@@ -1,8 +1,93 @@
 {% extends 'librarymanager/basic.html' %}
 {% block title %} Profile Page {% endblock %}
+{% block head %}
+
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet"/>   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" 
+href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"/>
+<script type="text/javascript" 
+src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" 
+src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+
+{% endblock %}
+
+
+
 {% block body %}
+{% load lib_tags %}
 
+<h4>Pending Requests</h4>
+<hr>
+<table id="dtBasicExample" class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">Request ID</th>
+          <th scope="col">Book Title</th>
+          <th scope="col">Application Date</th>
+        
+         
+        </tr>
+    </thead>
+    <tbody>
+          {% for tp in temp2 %}
+            <tr>
+              <td>{{tp.0}}</td>
+              <td>{{tp.1}}</td>
+              <td>{{tp.2}}</td>
+              <!-- <td></td> -->
+            </tr>
+            {%endfor%}
+    </tbody>
+</table>
+<br>
+<h4>Approved Requests</h4>
+<hr>
+<table id="dtBasicExample2" class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">Request ID</th>
+          <th scope="col">Book Title</th>
+          <th scope="col">Issue Date</th>
+          <th scope="col">Due Date</th>
+          <th scope="col" align="center">Action</th>
+         
+        </tr>
+    </thead>
+    <tbody>
+          {% for t in temp %}
+            <tr>
+              <td>{{t.0}}</td>
+              <td>{{t.1}}</td>
+              <td>{{t.2}}</td>
+              <td align="center">{{t.3}}</td>
+              <td>{{t.4}}</td>
+              <td align="center">{{t.5}}</td>
+              <td>{{t.6}} Days</td>
+              
+                
+          
 
+              <!-- <td></td> -->
+            </tr>
+            {%endfor%}
+    </tbody>
+</table>
 
+<script>
+    $(document).ready(function(){
+        $('#dtBasicExample').dataTable();
+    });
+    $(document).ready(function(){
+        $('#dtBasicExample2').dataTable();
+    });
+
+</script>
 
 {% endblock %}

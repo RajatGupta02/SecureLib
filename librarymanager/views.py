@@ -75,10 +75,42 @@ def bookview(request,id):
     return redirect('/login')
 
 def profileview(request,id):
-    if request.user.is_authenticated:
-        profile = request.user.id
-        return render(request, 'librarymanager/profileview.html',{'profile': profile})
-    return redirect('/login')
+    users_in_group = Group.objects.get(name="Librarian").user_set.all()
+
+    if request.user not in users_in_group:  
+
+        if request.user.is_authenticated:
+            profile = request.user.id
+            approverequests=Approval.objects.filter(student_id=profile)
+            issuerequests=IssueRequest.objects.filter(student_id=profile)
+            temp=[]
+            temp2=[]
+            for ibook in approverequests:
+                idate=str(ibook.approvaldate.day)+'-'+str(ibook.approvaldate.month)+'-'+str(ibook.approvaldate.year)
+                
+                books=list(Book.objects.filter(book_name=ibook.book_name))
+                j=0
+                for bk in books:
+                    t=(ibook.request_id,ibook.book_name,ibook.student_id,ibook.email,idate, ibook.duration)
+                    j=j+1
+                    temp.append(t)
+                    
+            for ibook in issuerequests:
+                appdate=str(ibook.date.day)+'-'+str(ibook.date.month)+'-'+str(ibook.date.year)
+                books=list(Book.objects.filter(book_name=ibook.book_name))
+                k=0
+                for bk in books:
+                    tp=(ibook.request_id,ibook.book_name,appdate)
+                    k=k+1
+                    temp2.append(tp)
+                   
+            
+            
+            params={'temp':temp,'temp2':temp2}
+            return render(request, 'librarymanager/profileview.html',params)
+        return redirect('/login')
+    else:
+        return redirect('/libview')
 
 def managebooks(request):
     users_in_group = Group.objects.get(name="Librarian").user_set.all()
@@ -161,24 +193,28 @@ def issuebook(request,bookname,stid):
         return redirect('/libview')
 
 def viewrequests(request):
-    issuedbooks=IssueRequest.objects.all()
-    temp=[]
-    for ibook in issuedbooks:
-        idate=str(ibook.date.day)+'-'+str(ibook.date.month)+'-'+str(ibook.date.year)
-        
-        
-        books=list(Book.objects.filter(book_name=ibook.book_name))
-        students=list(IssueRequest.objects.filter(student_name=ibook.student_name))
-        
-        
-        j=0
-        for bk in books:
-            t=(ibook.request_id,ibook.book_name,students[j],ibook.student_id,ibook.email,idate, ibook.duration)
-            j=j+1
-            temp.append(t)
+    users_in_group = Group.objects.get(name="Librarian").user_set.all()
 
-    return render(request,'librarymanager/viewrequests.html',{'temp':temp})
+    if request.user in users_in_group:   
+        issuedbooks=IssueRequest.objects.all()
+        temp=[]
+        for ibook in issuedbooks:
+            idate=str(ibook.date.day)+'-'+str(ibook.date.month)+'-'+str(ibook.date.year)
+            
+            
+            books=list(Book.objects.filter(book_name=ibook.book_name))
+            students=list(IssueRequest.objects.filter(student_name=ibook.student_name))
+            
+            
+            j=0
+            for bk in books:
+                t=(ibook.request_id,ibook.book_name,students[j],ibook.student_id,ibook.email,idate, ibook.duration)
+                j=j+1
+                temp.append(t)
 
+        return render(request,'librarymanager/viewrequests.html',{'temp':temp})
+    else:
+        return redirect('/libview')
 def deleterequest(request,request_id):
     users_in_group = Group.objects.get(name="Librarian").user_set.all()
 

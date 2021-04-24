@@ -21,4 +21,5 @@ urlpatterns = [
     path('approverequest/<int:request_id>', views.approverequest, name='approverequest'),
     path('viewapprovedrequests/', views.viewapproved, name='viewapproved'),
     path('returned/<int:request_id>', views.returned, name='returned'),
+    path('search/', views.search, name='search'),
 ]

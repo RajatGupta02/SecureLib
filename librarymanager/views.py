@@ -7,6 +7,7 @@ from .models import Book , IssueRequest, Approval
 from math import ceil
 from .forms import BookForm, IssueForm
 from datetime import datetime, timedelta
+from django.contrib import messages
 
 
 # Create your views here.
@@ -87,11 +88,13 @@ def profileview(request,id):
             temp2=[]
             for ibook in approverequests:
                 idate=str(ibook.approvaldate.day)+'-'+str(ibook.approvaldate.month)+'-'+str(ibook.approvaldate.year)
-                
+                ddate=ibook.approvaldate + timedelta(days=ibook.duration)
+
+                duedate=str(ddate.day)+'-'+str(ddate.month)+'-'+str(ddate.year)
                 books=list(Book.objects.filter(book_name=ibook.book_name))
                 j=0
                 for bk in books:
-                    t=(ibook.request_id,ibook.book_name,ibook.student_id,ibook.email,idate, ibook.duration)
+                    t=(ibook.request_id,ibook.book_name,idate,duedate, ibook.duration)
                     j=j+1
                     temp.append(t)
                     
@@ -259,7 +262,8 @@ def viewapproved(request):
     temp=[]
     for ibook in approverequests:
         idate=str(ibook.approvaldate.day)+'-'+str(ibook.approvaldate.month)+'-'+str(ibook.approvaldate.year)
-        
+        ddate=ibook.approvaldate + timedelta(days=ibook.duration)
+        duedate=str(ddate.day)+'-'+str(ddate.month)+'-'+str(ddate.year)
         
         books=list(Book.objects.filter(book_name=ibook.book_name))
         students=list(Approval.objects.filter(student_name=ibook.student_name))
@@ -267,7 +271,7 @@ def viewapproved(request):
         
         j=0
         for bk in books:
-            t=(ibook.request_id,ibook.book_name,students[j],ibook.student_id,ibook.email,idate, ibook.duration)
+            t=(ibook.request_id,ibook.book_name,students[j],ibook.student_id,ibook.email,idate, ibook.duration,duedate)
             j=j+1
             temp.append(t)
 
@@ -285,3 +289,18 @@ def returned(request,request_id):
             return render(request, 'librarymanager/viewapprovedrequests.html',context)
     else:
         return redirect('/libview')
+
+def search(request):
+    if request.user.is_authenticated:
+        query=request.GET['query']
+        bookTitle= Book.objects.filter(book_name__icontains=query)
+        bookDesc= Book.objects.filter(desc__icontains=query)
+        books= bookTitle.union(bookDesc)
+        temp=[]
+        temp.append(books)
+        params={'books': books}
+        if len(temp)==0:
+            messages.error(request, "No books found ")
+
+        return render(request, 'librarymanager/search.html', params)
+    return redirect('/login')

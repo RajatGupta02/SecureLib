@@ -22,7 +22,7 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
 
 {% block body %}
 {% load lib_tags %}
-
+<br>
 <h4>Pending Requests</h4>
 <hr>
 <table id="dtBasicExample" class="table table-hover">
@@ -52,11 +52,11 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
 <table id="dtBasicExample2" class="table table-hover">
     <thead>
         <tr>
-          <th scope="col">Request ID</th>
+          <th scope="col">Approval ID</th>
           <th scope="col">Book Title</th>
           <th scope="col">Issue Date</th>
           <th scope="col">Due Date</th>
-          <th scope="col" align="center">Action</th>
+          <th scope="col" align="center">Duration</th>
          
         </tr>
     </thead>
@@ -67,9 +67,7 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
               <td>{{t.1}}</td>
               <td>{{t.2}}</td>
               <td align="center">{{t.3}}</td>
-              <td>{{t.4}}</td>
-              <td align="center">{{t.5}}</td>
-              <td>{{t.6}} Days</td>
+              <td>{{t.4}} Days</td>
               
                 
           

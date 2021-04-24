@@ -169,6 +169,7 @@ def deletebook(request,pk):
         if request.method =='POST':
             reqbook.delete()
             return redirect("/managebooks")
+            messages.warning(request, "Book Deleted !")
             context = {'reqbook': reqbook}
             return render(request, 'librarymanager/managebooks.html',context)
     else:
@@ -225,7 +226,9 @@ def deleterequest(request,request_id):
         reqrequest = IssueRequest.objects.get(request_id=request_id)
         if request.method =='POST':
             reqrequest.delete()
+            
             return redirect("/viewrequests")
+            messages.danger(request, "Request Deleted !")
             context = {'reqrequest': reqrequest}
             return render(request, 'librarymanager/viewrequests.html',context)
     else:
@@ -252,6 +255,7 @@ def approverequest(request,request_id):
             
             reqrequest.delete()
             return redirect("/viewrequests")
+            messages.success(request, "Request Approved !")
             context = {'reqrequest': reqrequest}
             return render(request, 'librarymanager/viewrequests.html',context)
     else:
@@ -296,11 +300,10 @@ def search(request):
         bookTitle= Book.objects.filter(book_name__icontains=query)
         bookDesc= Book.objects.filter(desc__icontains=query)
         books= bookTitle.union(bookDesc)
-        temp=[]
-        temp.append(books)
+        
         params={'books': books}
-        if len(temp)==0:
-            messages.error(request, "No books found ")
+        if books.count()==0:
+            messages.warning(request, "No search results found. Please refine your query.")
 
         return render(request, 'librarymanager/search.html', params)
     return redirect('/login')

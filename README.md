@@ -25,6 +25,7 @@ You may clone this repository or download it as a zipped file and unzip it.
 ### Running the Website
 Once you have all the files in your local system, navigate to the  Main Project Directory :/SECURELIB/
 Now open windows powershell within this directory and enter the following commands:
+
 ```python manage.py makemigrations```
 
 ```python manage.py migrate```

@@ -26,10 +26,16 @@ You may clone this repository or download it as a zipped file and unzip it.
 Once you have all the files in your local system, navigate to the  Main Project Directory :/SECURELIB/
 Now open windows powershell within this directory and enter the following commands:
 ```python manage.py makemigrations```
+
 ```python manage.py migrate```
+
 ```python manage.py runserver```
+
 Now you will see something like this :
+
 ```Starting development server at http://127.0.0.1:8000/ ```
+
+
 Ctrl+Click on the link and you are good to go! 
 
 ## Dummy Users:

@@ -1,5 +1,5 @@
 # SecureLib
-### Specifications
+## Specifications
 1. Signup and Login Page for users
 2. If a user id not logged in then he/she cannot access any page of the website.
 3. There are 3 roles : Admin, Librarian , User. Admin can give role of Librarian or delete it from the admin panel.
@@ -8,12 +8,56 @@
 6. Librarians can View/ Add / Edit/ Delete Books
 7. Normal Users have a profile page where they can see all of their pending requests as well as approved requests.
 8. If a user has a pending request or has issued the book currently then he cannot apply for issue request of the same book.
-9. Book availability is changed if
+9. Book availability is changed automatically if book is returned or is issued.
+10. Search algorithm searches for words present in book title as well as the description.
 
-### Installation
+## Installation
+
+### Pre-requisites
+Install python
+Enter the following commands in Windows powershell:
+```pip install django``` 
+```pip install django-crispy-forms``` 
+
+### Clone this Repository
+You may clone this repository or download it as a zipped file and unzip it.
+
+### Running the Website
+Once you have all the files in your local system, navigate to the  Main Project Directory :/SECURELIB/
+Now open windows powershell within this directory and enter the following commands:
+```python manage.py makemigrations```
+```python manage.py migrate```
+```python manage.py runserver```
+Now you will see something like this :
+```Starting development server at http://127.0.0.1:8000/ ```
+Ctrl+Click on the link and you are good to go! 
+
+## Dummy Users:
+Admin:
+| Username  | Password  |
+| --------- |:---------:|
+| admin    | admin|
+
+Librarian:
+| Username  | Password  |
+| --------- |:---------:|
+| RajatLib  | admin |
 
 
-### Screenshots
+
+Normal Users:
+
+| Username  | Password  |
+| --------- |:---------:|
+| user1     | rajat2002 |
+| user2     | rajat2002 |
+| user3     | rajat2002 |
+| user4     | rajat2002 |
+
+
+
+
+## Screenshots
 
 |Login Page  | Signup Page |
 |------------|-------------|

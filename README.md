@@ -16,7 +16,9 @@
 ### Pre-requisites
 Install python
 Enter the following commands in Windows powershell:
+
 ```pip install django``` 
+
 ```pip install django-crispy-forms``` 
 
 ### Clone this Repository

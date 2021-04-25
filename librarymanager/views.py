@@ -245,7 +245,7 @@ def approverequest(request,request_id):
             email=reqrequest.email
             duration=reqrequest.duration
             phone=reqrequest.phone
-            approval = Approval(book_name= book_name, student_name=student_name, student_id= stid ,duration=duration , email=email,phone=phone)
+            approval = Approval(request_id= request_id,book_name= book_name, student_name=student_name, student_id= stid ,duration=duration , email=email,phone=phone)
             approval.save()
 
             
@@ -286,7 +286,12 @@ def returned(request,request_id):
 
     if request.user in users_in_group:
         reqrequest = Approval.objects.get(request_id=request_id)
+        
         if request.method =='POST':
+            book_name=reqrequest.book_name
+            chngqty=Book.objects.get(book_name=book_name)
+            chngqty.quantity+=1
+            chngqty.save()
             reqrequest.delete()
             return redirect("/viewapprovedrequests")
             context = {'reqrequest': reqrequest}

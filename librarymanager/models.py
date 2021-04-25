@@ -15,7 +15,8 @@ class Book(models.Model):
         return self.book_name
 
 class IssueRequest(models.Model):
-    request_id = models.AutoField(primary_key=True)
+    request_id= models.AutoField(primary_key=True)
+    
     book_name = models.CharField(max_length=50)
     student_name = models.CharField(max_length=50)
     student_id = models.CharField(max_length=50, default="")
@@ -28,7 +29,8 @@ class IssueRequest(models.Model):
         return self.student_name
 
 class Approval(models.Model):
-    request_id = models.AutoField(primary_key=True)
+    request_id_old = models.AutoField(primary_key=True)
+    request_id= models.IntegerField()
     book_name = models.CharField(max_length=50)
     student_name = models.CharField(max_length=50)
     student_id = models.CharField(max_length=50, default="")

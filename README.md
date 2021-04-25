@@ -1,7 +1,7 @@
 # SecureLib
 ## Specifications
 1. Signup and Login Page for users
-2. If a user id not logged in then he/she cannot access any page of the website.
+2. If a user is not logged in then he/she cannot access any page of the website.
 3. There are 3 roles : Admin, Librarian , User. Admin can give role of Librarian or delete it from the admin panel.
 4. Users can request books by clicking the Issue Request Button and filling the form.
 5. Librarians can view both pending requests and the requests that they have approved i.e. issued books
